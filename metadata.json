@@ -1,0 +1,6 @@
+{
+  "name": "HakiLab",
+  "description": "Plateforme d'intelligence juridique et de gestion de cabinets en RDC, dotée du Juge Virtuel Analytique de HakiLab et de guides légaux.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

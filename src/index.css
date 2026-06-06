@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Redefine amber range to use the premium RDC Gold (#FFD600) strictly */
+  --color-amber-400: #ffe54a;
+  --color-amber-500: #FFD600;
+  --color-amber-600: #e6c000;
+  
+  --color-rdc-blue: #0079C1;
+  --color-rdc-gold: #FFD600;
+  --color-rdc-red: #CE1021;
+}
+
+/* Default dark mode styling with the premium Congolese Flag gradient */
+html, body {
+  font-family: var(--font-sans);
+  background: linear-gradient(135deg, rgba(0, 121, 193, 0.15) 0%, rgba(206, 16, 33, 0.1) 50%, rgba(255, 214, 0, 0.05) 100%), radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 40%), #0A0A0B;
+  background-attachment: fixed;
+  color: #F3F4F6;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  min-height: 100vh;
+}
+
+/* Custom premium design element utility classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+}
+
+/* Layout Scrollbars */
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: rgba(10, 10, 11, 0.3);
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Micro animations */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(255, 214, 0, 0.08); }
+  50% { box-shadow: 0 0 25px rgba(255, 214, 0, 0.2); }
+}
+
+.pulse-glow {
+  animation: pulseGlow 4s infinite ease-in-out;
+}
+
+/* Custom card layouts matching design panel aesthetics */
+.theme-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+}
+

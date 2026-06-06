@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Règle pour HakiLab - Autorise la lecture et l'écriture pour le développement
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

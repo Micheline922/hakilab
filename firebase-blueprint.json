@@ -1,0 +1,103 @@
+{
+  "entities": {
+    "profile": {
+      "title": "UserProfile",
+      "description": "User profile containing roles and cabinet associations",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Unique identifier for the user" },
+        "name": { "type": "string", "description": "User's full name" },
+        "email": { "type": "string", "description": "User's email address" },
+        "role": { "type": "string", "description": "Assigned simulate role" },
+        "cabinetId": { "type": "string", "description": "Id of the virtual law cabinet or null" }
+      },
+      "required": ["userId", "name", "email", "role"]
+    },
+    "cabinet": {
+      "title": "VirtualCabinet",
+      "description": "Virtual law cabinet representing a firm",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique cabinet ID" },
+        "name": { "type": "string", "description": "Name of the law cabinet" },
+        "chefId": { "type": "string", "description": "User ID of the Chef de Cabinet" },
+        "chefName": { "type": "string", "description": "Name of the Chef de Cabinet" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "ISO creation timestamp" }
+      },
+      "required": ["id", "name", "chefId", "chefName", "createdAt"]
+    },
+    "member": {
+      "title": "CabinetMember",
+      "description": "Member lawyer, helper or clerk in a virtual cabinet",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique member ID" },
+        "cabinetId": { "type": "string", "description": "Associated cabinet ID" },
+        "name": { "type": "string", "description": "Full name" },
+        "role": { "type": "string", "description": "Cabinet position" },
+        "joinedAt": { "type": "string", "format": "date-time", "description": "ISO joining timestamp" }
+      },
+      "required": ["id", "cabinetId", "name", "role", "joinedAt"]
+    },
+    "dossier": {
+      "title": "ClientDossier",
+      "description": "Legal dossier for a client containing encrypted cases",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique dossier ID" },
+        "cabinetId": { "type": "string", "description": "Law firm ID" },
+        "clientName": { "type": "string", "description": "Name of the client" },
+        "caseNumber": { "type": "string", "description": "Official court case number" },
+        "title": { "type": "string", "description": "Title of the dossier" },
+        "description": { "type": "string", "description": "General description" },
+        "status": { "type": "string", "enum": ["En cours", "Plaidé", "Gagné", "Perdu"], "description": "Current state" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "ISO creation timestamp" },
+        "documents": {
+          "type": "array",
+          "description": "Embedded index of case documents"
+        }
+      },
+      "required": ["id", "cabinetId", "clientName", "caseNumber", "title", "createdAt", "status"]
+    },
+    "publication": {
+      "title": "DoctrinalPublication",
+      "description": "Doctrinal article or law studies published for peer review",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier" },
+        "title": { "type": "string", "description": "Title of article" },
+        "authorName": { "type": "string", "description": "Name of the author" },
+        "authorTitle": { "type": "string", "description": "Doctrinal authority title" },
+        "category": { "type": "string", "description": "Classification category" },
+        "content": { "type": "string", "description": "Body content" },
+        "status": { "type": "string", "enum": ["En attente", "Validé", "Rejeté"], "description": "Review status" },
+        "plagiarismScore": { "type": "number", "description": "Indication of citation reuse (0-100)" },
+        "aiFeedback": { "type": "object", "description": "AI-generated scans feedback" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "ISO publication timestamp" }
+      },
+      "required": ["id", "title", "authorName", "content", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "profiles/{profileId}": {
+      "schema": "profile",
+      "description": "User simulated profiles"
+    },
+    "cabinets/{cabinetId}": {
+      "schema": "cabinet",
+      "description": "Register law firms"
+    },
+    "members/{memberId}": {
+      "schema": "member",
+      "description": "Colleagues and team workers"
+    },
+    "dossiers/{dossierId}": {
+      "schema": "dossier",
+      "description": "Active lawsuits and documentation"
+    },
+    "publications/{pubId}": {
+      "schema": "publication",
+      "description": "Public studies and legal forum content"
+    }
+  }
+}
